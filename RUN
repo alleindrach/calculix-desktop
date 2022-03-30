@@ -1,0 +1,19 @@
+加载样例工程
+运行：
+    ./calculix_desktop_allein.py  -v D:/examples 
+会启动一个docker 容器，作为calculix的运行环境，通过浏览器窗口的vnc viewer访问
+在vnc viewer 的终端管理器里执行：
+  #切换到超级用户
+  sudo su 
+  #设置脚本环境
+  export  PATH=/home/ubuntu/project/Scripts:$PATH
+  #设置可执行文件
+  chmod a+x /home/ubuntu/project/Scripts/
+  find /home/ubuntu/project/ -name test.py |xargs -i chmod a+x {}
+  
+执行所有的测试
+  ./testall.py 
+执行其中一个测试
+  cd Linear 
+  cd Mesh1
+  
