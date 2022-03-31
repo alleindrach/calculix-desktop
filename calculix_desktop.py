@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Launch a Docker image with Ubuntu and LXDE window manager, and
@@ -26,13 +26,13 @@ def parse_args(description):
 
     parser.add_argument('-i', '--image',
                         help='The Docker image to use. ' +
-                        'The default is unifem/' + APP + '-desktop.',
-                        default="unifem/" + APP + "-desktop")
+                        'The default is alleindrach2/' + APP + '.',
+                        default="alleindrach2/" + APP )
 
     parser.add_argument('-t', '--tag',
                         help='Tag of the image. The default is latest. ' +
                         'If the image already has a tag, its tag prevails.',
-                        default="latest")
+                        default="v219.2")
 
     parser.add_argument('-v', '--volume',
                         help='A data volume to be mounted to ~/project.',
