@@ -1,0 +1,12 @@
+[submodule "cgx_prool"]
+	path = cgx_prool
+	url = https://github.com/calculix/cgx_prool.git
+[submodule "examples"]
+	path = examples
+	url = https://github.com/calculix/CalculiX-Examples.git
+[submodule "ccx"]
+	path = ccx
+	url = https://github.com/unifem/CalculiX_MT.git
+[submodule "ccx_prool"]
+	path = ccx_prool
+	url = https://github.com/calculix/ccx_prool.git
