@@ -1,18 +1,16 @@
 # Builds a Docker image for Multithreaded version of CalculiX
 #
 # Authors:
-# Alleindrach<alleindrach@gmail.com>
+# Xiangmin Jiao <xmjiao@gmail.com>
 
 FROM x11vnc/desktop:latest
-LABEL maintainer "AlleinDrach<alleindrach@gmail.com>"
+LABEL maintainer "Xiangmin Jiao <xmjiao@gmail.com>"
 
 USER root
 WORKDIR /tmp
 ADD image/usr /usr
 
 # Install system packages
-
-
 RUN sh -c "curl -s http://dl.openfoam.org/gpg.key | apt-key add -" && \
     add-apt-repository http://dl.openfoam.org/ubuntu && \
     apt-get update && \
@@ -21,30 +19,17 @@ RUN sh -c "curl -s http://dl.openfoam.org/gpg.key | apt-key add -" && \
         gcc \
         gfortran \
         git \
-        xorg-dev  \ 
-        libglu1-mesa-dev \
-        python3-pip \
-        paraviewopenfoam56  \
-        tetgen \
-        gnuplot-x11 && \
+        paraviewopenfoam56 && \
     apt-get clean && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN pip3 install --upgrade gmsh
-
-COPY ccx_prool ./ccx
 # Checkout CalcluiX_MT and compile it with Spooles and OpenMP
-RUN cd ccx && \
-    CALCULIX_HOME=$PWD make  && \
-    ln  -s $PWD/ccx /usr/local/bin/ccx
-
-COPY cgx_prool ./cgx
-RUN cd cgx/cgx_2.12/src && \
-    make  && \
-    ln -s $PWD/cgx /usr/local/bin/cgx 
-
-
+RUN git clone https://github.com/unifem/CalculiX_MT.git calculix && \
+    cd calculix && \
+    perl -e 's/https:\/\/[\w:\.]+@([\w\.]+)\//git\@$1:/' -p -i .git/config && \
+    git remote add https https://github.com/unifem/CalculiX_MT.git && \
+    CALCULIX_HOME=$PWD ./build_ccx
 
 
 ########################################################
