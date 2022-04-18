@@ -3,7 +3,7 @@
 # Authors:
 # Alleindrach<alleindrach@gmail.com>
 
-FROM x11vnc/desktop:latest
+FROM x11vnc/desktop:20.04
 LABEL maintainer "AlleinDrach<alleindrach@gmail.com>"
 
 USER root
@@ -17,17 +17,17 @@ RUN sh -c "curl -s http://dl.openfoam.org/gpg.key | apt-key add -" && \
     add-apt-repository http://dl.openfoam.org/ubuntu && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-        build-essential \
-        gcc \
-        gfortran \
-        git \
-        xorg-dev  \ 
-        libglu1-mesa-dev \
-        python3-pip \
-        paraviewopenfoam56  \
-        tetgen \
-        imagemagick \
-        gnuplot-x11 && \
+    build-essential \
+    gcc \
+    gfortran \
+    git \
+    xorg-dev  \ 
+    libglu1-mesa-dev \
+    python3-pip \
+    paraviewopenfoam56  \
+    tetgen \
+    imagemagick \
+    gnuplot-x11 && \
     apt-get clean && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

@@ -13,7 +13,7 @@ import sys
 import subprocess
 import time
 
-APP = "calculix"
+APP = "fastcae"
 
 
 def parse_args(description):
@@ -32,7 +32,7 @@ def parse_args(description):
     parser.add_argument('-t', '--tag',
                         help='Tag of the image. The default is latest. ' +
                         'If the image already has a tag, its tag prevails.',
-                        default="v219.2")
+                        default="v.0.03")
 
     parser.add_argument('-v', '--volume',
                         help='A data volume to be mounted to ~/project.',

@@ -1,0 +1,1 @@
+docker exec -it fastcae /bin/bash
