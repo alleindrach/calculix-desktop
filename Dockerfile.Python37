@@ -1,0 +1,32 @@
+# Builds a Docker image for Multithreaded version of CalculiX
+#
+# Authors:
+# Alleindrach<alleindrach@gmail.com>
+
+FROM x11vnc/desktop:20.04
+LABEL maintainer "AlleinDrach<alleindrach@gmail.com>"
+
+USER root
+WORKDIR /tmp
+ADD image/usr /usr
+
+# Install system packages
+COPY sources.list /etc/apt/sources.list
+RUN add-apt-repository ppa:deadsnakes/ppa -y
+RUN apt update 
+RUN apt-get install -y zlib*
+RUN apt-get install -y build-essential python-dev python-setuptools python3-pip python-smbus
+RUN apt-get install -y libreadline-dev libdb-dev libpcap-dev libexpat1-dev
+RUN apt-get install -y libbz2-dev  libncurses5-dev xz-utils liblzma-dev 
+RUN apt-get install -y libncursesw5-dev libgdbm-dev libc6-dev
+RUN apt-get install -y libsqlite3-dev tk-dev
+RUN apt-get install -y libssl-dev openssl
+RUN apt-get install -y libffi-dev
+
+ADD FastCAE_Linux/Python/Python-3.7.0.tgz /root/Python-3.7.0
+RUN cd /root/Python-3.7.0/ && ./configure --enable-optimizations && make 
+
+
+WORKDIR $DOCKER_HOME
+
+CMD ["bash","-c","tail -f /dev/null"]
