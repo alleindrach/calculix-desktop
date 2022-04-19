@@ -21,10 +21,17 @@ RUN apt-get install -y libncursesw5-dev libgdbm-dev libc6-dev
 RUN apt-get install -y libsqlite3-dev tk-dev
 RUN apt-get install -y libssl-dev openssl
 RUN apt-get install -y libffi-dev
+RUN apt remove -y python2.7 python3.8 
+ADD FastCAE_Linux/Python/Python-3.7.0.tgz /root/
 
-ADD FastCAE_Linux/Python/Python-3.7.0.tgz /root/Python-3.7.0
-RUN cd /root/Python-3.7.0/ && ./configure --enable-optimizations && make 
+RUN cd /root/Python-3.7.0/ && ./configure --enable-optimizations --enable-shared && \
+    make && make install && \
+    if [  ! -f "/usr/bin/python" ];then mv /usr/bin/python /usr/bin/python.bak ; fi &&  \
+    ln -s /usr/local/bin/python3 /usr/bin/python && \
+    if [  ! -f "/usr/bin/pip" ];then   mv /usr/bin/pip /usr/bin/pip.bak ; fi && \
+    ln -s /usr/local/bin/pip3 /usr/bin/pip
 
+ENV LD_LIBRARY_PATH /usr/local/lib
 
 WORKDIR $DOCKER_HOME
 
