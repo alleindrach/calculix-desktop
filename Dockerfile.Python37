@@ -12,7 +12,6 @@ ADD image/usr /usr
 
 # Install system packages
 COPY sources.list /etc/apt/sources.list
-RUN add-apt-repository ppa:deadsnakes/ppa -y
 RUN apt update 
 RUN apt-get install -y zlib*
 RUN apt-get install -y build-essential python-dev python-setuptools python3-pip python-smbus
