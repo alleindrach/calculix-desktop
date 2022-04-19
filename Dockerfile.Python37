@@ -14,7 +14,7 @@ ADD image/usr /usr
 COPY sources.list /etc/apt/sources.list
 RUN apt update 
 RUN apt-get install -y zlib*
-RUN apt-get install -y build-essential python-dev python-setuptools python3-pip python-smbus
+RUN apt-get install -y build-essential python-dev python-setuptools python3-pip python3-smbus
 RUN apt-get install -y libreadline-dev libdb-dev libpcap-dev libexpat1-dev
 RUN apt-get install -y libbz2-dev  libncurses5-dev xz-utils liblzma-dev 
 RUN apt-get install -y libncursesw5-dev libgdbm-dev libc6-dev
