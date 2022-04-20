@@ -3,7 +3,7 @@
 # Authors:
 # Alleindrach<alleindrach@gmail.com>
 
-FROM x11vnc/desktop:20.04
+FROM alleindrach2/python370:0.0.1
 LABEL maintainer "AlleinDrach<alleindrach@gmail.com>"
 
 USER root
@@ -11,36 +11,31 @@ WORKDIR /tmp
 ADD image/usr /usr
 
 # Install system packages
-COPY sources.list /etc/apt/sources.list
-RUN add-apt-repository ppa:deadsnakes/ppa -y
-RUN apt update 
-RUN apt install  -y --no-install-recommends software-properties-common 
-RUN apt install  -y --no-install-recommends python3.7 
-RUN rm -rf /usr/bin/python3
-RUN rm -rf /usr/bin/python 
-RUN ln -s /usr/bin/python3.7 /usr/bin/python3
-RUN ln -s /usr/bin/python3 /usr/bin/python
+
 COPY environment /etc/environment
 COPY locale /etc/default/locale
 
 RUN echo LANG="zh_CN.UTF-8" >>/etc/profile
 
-RUN apt install -y --no-install-recommends \
-    build-essential \
-    gcc \
-    gfortran \
-    git \
-    xorg-dev  \ 
-    libglu1-mesa-dev \
-    tetgen \
-    imagemagick \
-    gnuplot-x11 libxkbcommon-x11-0 libxcb-icccm4 libxcb-icccm4-dev libxcb-image0 libxcb-image0-dev \
-    libxcb-keysyms1 libxcb-keysyms1-dev libxcb-randr0 libxcb-render-util0 libxcb-shape0 libxcb-xinerama0 \
-    libnss3 language-pack-zh-hans ttf-wqy-zenhei \
-    software-properties-common  python3-pip 
+RUN apt install -y --no-install-recommends     build-essential 
+RUN apt install -y --no-install-recommends      gcc 
+RUN apt install -y --no-install-recommends gfortran 
+RUN apt install -y --no-install-recommends     git 
+RUN apt install -y --no-install-recommends xorg-dev  
+RUN apt install -y --no-install-recommends libglu1-mesa-dev 
+RUN apt install -y --no-install-recommends     gnuplot-x11 
+RUN apt install -y --no-install-recommends  libxkbcommon-x11-0 
+RUN apt install -y --no-install-recommends  libxcb-icccm4 
+RUN apt install -y --no-install-recommends libxcb-icccm4-dev 
+RUN apt install -y --no-install-recommends libxcb-image0 
+RUN apt install -y --no-install-recommends libxcb-image0-dev 
+RUN apt install -y --no-install-recommends     libxcb-keysyms1 libxcb-keysyms1-dev libxcb-randr0 libxcb-render-util0 libxcb-shape0 libxcb-xinerama0 
+RUN apt install -y --no-install-recommends     libnss3
+RUN apt install -y --no-install-recommends  language-pack-zh-hans ttf-wqy-zenhei 
+RUN apt install -y --no-install-recommends     lxsession
 
-COPY FastCAE_Linux /home/ubuntu/FastCAE_Linux
-COPY qt-opensource-linux-x64-5.14.2.run /home/ubuntu/qt-opensource-linux-x64-5.14.2.run
+#COPY FastCAE_Linux /home/ubuntu/FastCAE_Linux
+#COPY qt-opensource-linux-x64-5.14.2.run /home/ubuntu/qt-opensource-linux-x64-5.14.2.run
 
 WORKDIR $DOCKER_HOME
 
