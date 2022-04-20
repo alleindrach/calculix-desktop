@@ -20,7 +20,7 @@ RUN apt-get install -y libbz2-dev  libncurses5-dev xz-utils liblzma-dev
 RUN apt-get install -y libncursesw5-dev libgdbm-dev libc6-dev
 RUN apt-get install -y libsqlite3-dev tk-dev
 RUN apt-get install -y libssl-dev openssl
-RUN apt-get install -y libffi-dev
+RUN apt-get install -y libffi-dev lxsession
 RUN apt remove -y python2.7 python3.8 
 ADD FastCAE_Linux/Python/Python-3.7.0.tgz /root/
 
