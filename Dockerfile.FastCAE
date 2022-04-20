@@ -3,7 +3,7 @@
 # Authors:
 # Alleindrach<alleindrach@gmail.com>
 
-FROM alleindrach2/python370:0.0.1
+FROM alleindrach2/python370:0.0.2
 LABEL maintainer "AlleinDrach<alleindrach@gmail.com>"
 
 USER root
